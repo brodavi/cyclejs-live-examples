@@ -1,0 +1,37 @@
+{
+  "name": "cyclejslivexamples",
+  "version": "0.0.1",
+  "description": "A live showcase of cyclejs components, testing the claim that \"every single Cycle.js app ... is a function that can be reused in a larger Cycle.js app.\"",
+  "main": "app.js",
+  "dependencies": {
+    "@cycle/core": "^6.0.3",
+    "@cycle/dom": "^9.4.0",
+    "@cycle/http": "^8.2.2",
+    "@cycle/isolate": "^1.2.0",
+    "@cycle/jsonp": "^5.0.1",
+    "backspace-disabler": "^1.0.1",
+    "calendar": "^0.1.0",
+    "cycle-connection-driver": "^1.0.1",
+    "immutable": "^3.7.6",
+    "lodash": "^4.10.0",
+    "md5": "^2.1.0",
+    "querystring": "^0.2.0",
+    "rx": "^4.1.0",
+    "rx-combine-latest-obj": "^1.0.2"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.6.5",
+    "babel-preset-es2015": "^6.6.0",
+    "babelify": "^7.2.0",
+    "browserify": "^13.0.0",
+    "http-server": "^0.9.0",
+    "watchify": "^3.7.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify -t babelify app.js -o bundle.js;",
+    "watch": "watchify -t babelify --debug app.js -o bundle.js;"
+  },
+  "author": "David Brooks",
+  "license": "MIT"
+}
