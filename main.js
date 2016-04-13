@@ -19,17 +19,14 @@ BackspaceDisabler.disable()
 function main (sources) {
   const gru = GetRandomUser(sources)
   const autocomplete = Autocomplete(sources)
-
-  const grav$ = Gravatar(sources).DOM
-  const cal$ = Calendar(sources).DOM
-  const greet$ = Greeter(sources).DOM
-  const bmi$ = BMI(sources).DOM
-  const count$ = Counter(sources).DOM
-  const gru$ = gru.DOM
-  const many$ = Many(sources).DOM
-  const aletters$ = AnimatedLetters(sources).DOM
-  const nfolders$ = createFolderComponent({id: 0, removable: false})(sources).DOM
-  const autocomplete$ = autocomplete.DOM
+  const grav = Gravatar(sources)
+  const cal = Calendar(sources)
+  const greet = Greeter(sources)
+  const bmi = BMI(sources)
+  const count = Counter(sources)
+  const many = Many(sources)
+  const aletters = AnimatedLetters(sources)
+  const nfolders = createFolderComponent({id: 0, removable: false})(sources)
 
   const connectionStatus$ = sources.Connection.startWith('online').map(function (c) {
     return div([
@@ -49,19 +46,19 @@ function main (sources) {
 
   const vtree$ = Rx.Observable.combineLatest(
     connectionStatus$,
-    grav$,
-    cal$,
-    greet$,
-    bmi$,
-    count$,
-    gru$,
-    many$,
-    aletters$,
-    nfolders$,
-    autocomplete$,
+    grav.DOM,
+    cal.DOM,
+    greet.DOM,
+    bmi.DOM,
+    count.DOM,
+    gru.DOM,
+    many.DOM,
+    aletters.DOM,
+    nfolders.DOM,
+    autocomplete.DOM,
 
-    (vd1, ...rest) => {
-      return div([[vd1, ...rest].map(function (s) {
+    (...rest) => {
+      return div([[...rest].map(function (s) {
         return div({style: divStyle}, s)
       })])
     }

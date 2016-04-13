@@ -7,13 +7,6 @@ import cycleConnectionDriver from './components/cycle-connection-driver/main.js'
 
 import App from './main.js'
 
-function main (sources) {
-  const app$ = App(sources).DOM
-  return {
-    DOM: app$
-  }
-}
-
 function preventDefaultSinkDriver (prevented$) {
   prevented$.subscribe(ev => {
     ev.preventDefault()
@@ -33,4 +26,4 @@ const drivers = {
   Connection: cycleConnectionDriver
 }
 
-Cycle.run(main, drivers)
+Cycle.run(App, drivers)
