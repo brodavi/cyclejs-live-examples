@@ -17,16 +17,19 @@ const BackspaceDisabler = require('backspace-disabler')
 BackspaceDisabler.disable()
 
 function main (sources) {
+  const gru = GetRandomUser(sources)
+  const autocomplete = Autocomplete(sources)
+
   const grav$ = Gravatar(sources).DOM
   const cal$ = Calendar(sources).DOM
   const greet$ = Greeter(sources).DOM
   const bmi$ = BMI(sources).DOM
   const count$ = Counter(sources).DOM
-  const gru$ = GetRandomUser(sources).DOM
+  const gru$ = gru.DOM
   const many$ = Many(sources).DOM
   const aletters$ = AnimatedLetters(sources).DOM
   const nfolders$ = createFolderComponent({id: 0, removable: false})(sources).DOM
-  const autocomplete$ = Autocomplete(sources).DOM
+  const autocomplete$ = autocomplete.DOM
 
   const connectionStatus$ = sources.Connection.startWith('online').map(function (c) {
     return div([
@@ -66,9 +69,9 @@ function main (sources) {
 
   return {
     DOM: vtree$,
-    HTTP: GetRandomUser(sources).HTTP,
-    preventDefault: Autocomplete(sources).preventDefault,
-    JSONP: Autocomplete(sources).JSONP
+    HTTP: gru.HTTP,
+    preventDefault: autocomplete.preventDefault,
+    JSONP: autocomplete.JSONP
   }
 }
 
